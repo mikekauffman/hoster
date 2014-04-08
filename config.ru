@@ -1,0 +1,3 @@
+require './hoster'
+
+run Hoster
