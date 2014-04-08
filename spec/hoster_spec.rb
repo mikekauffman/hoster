@@ -8,7 +8,12 @@ feature 'Interacting with the app' do
 
   scenario 'Welcome displays on the hompage' do
     visit '/'
-    expect(page).to have_content 'Welcome'
+    fill_in 'party_name', :with => 'Mike'
+    fill_in 'party_size', :with => '4'
+    fill_in 'party_phone', :with => '7033718749'
+    expect(page).to have_content 'Mike'
+    expect(page).to have_content '4'
+    expect(page).to have_content '7033718749'
   end
 
 end

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head><title>Hoster</title></head>
+<link href="style.css" rel="stylesheet" type="text/css">
+<body>
+<form action="/new_party" method="post">
+  Party Name: <input type="text" name="party_name">
+  Party Size: <input type="number" name="party_size">
+  Phone Number: <input type="number" name="party_phone">
+  <input type="submit" value="Submit">
+</form>
+<ul>
+  <% party_data.all.each do |party| %>
+      <li><%= party[:name] %> - <%= party[:size] %> - <%= party[:phone] %></li>
+  <% end %>
+</ul>
+</body>
+</html>
