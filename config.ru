@@ -1,4 +1,5 @@
 require 'sequel'
+require 'pg'
 
 hoster_db = if !ENV['HEROKU_POSTGRESQL_JADE_URL'].nil?
                 ENV['HEROKU_POSTGRESQL_JADE_URL']
