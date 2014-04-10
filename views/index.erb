@@ -16,6 +16,7 @@
         "Been waiting for <%= party.wait_time %> minutes"
         <% end %>
         <form action="/delete/<%= party.name %>" method="post"><input value="Remove" type="submit"></form>
+        <form action="/text/<%= party.phone %>" method="post"><input value="Text Party" type="submit"></form>
       </li>
   <% end %>
 </ul>

@@ -1,7 +1,7 @@
 require 'sinatra/base'
-require 'rest-client'
 require_relative 'lib/party_database.rb'
 require_relative 'lib/party.rb'
+require 'twilio-ruby'
 
 class Hoster < Sinatra::Application
 
@@ -29,6 +29,18 @@ class Hoster < Sinatra::Application
     puts params[:name]
     party_data = PartyDatabase.new(DB)
     party_data.delete(params[:name])
+    redirect '/'
+  end
+
+  post '/text/:phone' do
+    account_sid = 'ACed7d490605ada89082d0588be5b62908'
+    auth_token = 'a34a00e7199e7c09ee448651d1013a03'
+    @client = Twilio::REST::Client.new account_sid, auth_token
+    @client.account.messages.create({
+                                      :from => '+12025172698',
+                                      :to => params[:phone],
+                                      :body => 'Your table is ready'
+                                    })
     redirect '/'
   end
 

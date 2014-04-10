@@ -3,8 +3,8 @@ source "https://rubygems.org"
 gem 'sinatra', '~> 1.3.6'
 gem 'sequel', '~> 4.7.0'
 gem 'pg', '~> 0.17.1'
-gem 'rest-client', '~> 1.6.7'
 ruby '2.1.1'
+gem 'twilio-ruby', '~> 3.11'
 
 group :development, :test do
   gem 'rspec', '~> 2.14.1'

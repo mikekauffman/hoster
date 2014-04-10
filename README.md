@@ -10,4 +10,4 @@
 
 ## Migrations on Heroku
 
-To run the migrations on heroku, run `heroku run 'sequel -m migrations HEROKU_POSTGRESQL_JADE_URL' --app hoster-app`
+To run the migrations on heroku, run `heroku run 'sequel -m migrations $HEROKU_POSTGRESQL_JADE_URL' --app hoster-app`
