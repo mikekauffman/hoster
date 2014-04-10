@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html>
 <head><title>Hoster</title></head>
-<link href="style.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.4.2/pure-min.css">
 <body>
-<form action="/new_party" method="post">
-  Party Name: <input type="text" name="party_name">
-  Party Size: <input type="number" name="party_size">
-  Phone Number: <input type="number" name="party_phone">
-  <input type="submit" value="Submit">
+<form class="pure-form" action="/new_party" method="post">
+  Party Name: <input style="width: 9em" type="text" name="party_name">
+  Party Size: <input style="width: 4em" type="number" name="party_size">
+  Phone Number: <input style="width: 9em" type="number" name="party_phone">
+  <button type="submit" class="pure-button pure-button-primary">Submit</button>
 </form>
+
 <ul>
   <% parties.each do |party| %>
-      <li><%= party.name %> - <%= party.size %> - <%= party.phone %> -
+      <li style="display: inline"><%= party.name %> - <%= party.size %> - <%= party.phone %> -
         <% if party.has_wait_time? %>
-        "Been waiting for <%= party.wait_time %> minutes"
+            "Been waiting for <%= party.wait_time %> minutes"
         <% end %>
-        <form action="/delete/<%= party.name %>" method="post"><input value="Remove" type="submit"></form>
-        <form action="/text/<%= party.phone %>" method="post"><input value="Text Party" type="submit"></form>
+        <form style="display: inline" action="/delete/<%= party.name %>" method="post">
+          <button style="font-family:Georgia;
+                  font-size:15px;
+                  font-weight:bold;
+                  font-style:normal;
+                  color:red;"
+                  type="submit">Remove
+          </button>
+        </form>
+        <form style="display: inline" action="/text/<%= party.phone %>" method="post">
+          <button style="font-family:Georgia;
+                  font-size:15px;
+                  font-weight:bold;
+                  font-style:normal;
+                  color:green;"
+                  type="submit">Text Party
+          </button>
+        </form>
       </li>
   <% end %>
 </ul>
