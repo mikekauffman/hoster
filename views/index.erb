@@ -12,7 +12,7 @@
 
 <ul>
   <% parties.each do |party| %>
-      <li style="display: inline"><%= party.name %> - <%= party.size %> - <%= party.phone %> -
+      <li><%= party.name %> - <%= party.size %> - <%= party.phone %> -
         <% if party.has_wait_time? %>
             "Been waiting for <%= party.wait_time %> minutes"
         <% end %>
