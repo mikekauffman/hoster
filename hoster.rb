@@ -5,6 +5,10 @@ require 'twilio-ruby'
 
 class Hoster < Sinatra::Application
 
+  get '/favicon.ico' do
+    # This is here so /favicon.ico doesn't match the /:id route
+  end
+
   get '/' do
     party_data = PartyDatabase.new(DB)
     parties = []
