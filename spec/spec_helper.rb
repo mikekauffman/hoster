@@ -1,5 +1,6 @@
 ENV['RACK_ENV'] = 'test'
 require 'sequel'
+Sequel.extension :migration
 
 DB = Sequel.connect('postgres://gschool_user:password@localhost/hoster_test_database')
 

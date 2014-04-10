@@ -4,22 +4,33 @@ require_relative '../lib/party_database'
 
 describe PartyDatabase do
 
-  PARTYDB = Sequel.connect('postgres://gschool_user:password@localhost/hoster_test_database')
+  before do
+    Sequel::Migrator.run(DB, "migrations")
+  end
 
-  it 'allows for creating of a task' do
+  after do
+    Sequel::Migrator.run(DB, "migrations", target: 0)
+  end
 
-    PARTYDB.create_table! :parties do
-      String :name
-      Integer :size
-      Bigint :phone
-    end
-    party_table = PartyDatabase.new(PARTYDB)
+  it 'allows for parties to be added to the waiting list' do
+    party_table = PartyDatabase.new(DB)
     party_table.create({name: 'Mike', size: 4, phone: 7033718749})
     party_table.create({name: 'Dave', size: 2, phone: 7035554848})
     expect(party_table.all).to eq [
-                                     {name: 'Mike', size: 4, phone: 7033718749},
-                                     {name: 'Dave', size: 2, phone: 7035554848}
+                                     {name: 'Mike', size: 4, phone: 7033718749, :arrival_time=>nil},
+                                     {name: 'Dave', size: 2, phone: 7035554848, :arrival_time=>nil},
+
                                    ]
+  end
+
+  it 'allows a party to be removed from the waiting list' do
+    party_table = PartyDatabase.new(DB)
+    party_table.create({name: 'Mike', size: 4, phone: 7033718749})
+    party_table.create({name: 'Dave', size: 2, phone: 7035554848})
+    party_table.delete('Mike')
+    expect(party_table.all).to eq [
+                                    {name: 'Dave', size: 2, phone: 7035554848, :arrival_time=>nil}
+                                  ]
   end
 
 end
