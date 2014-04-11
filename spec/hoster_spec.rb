@@ -23,7 +23,7 @@ feature 'Interacting with the app' do
     expect(page).to have_content 'Mike'
     expect(page).to have_content '4'
     expect(page).to have_content '7033718749'
-    expect(page).to have_content 'waiting for 0 minutes'
+    expect(page).to have_content '0 minutes'
   end
 
 end

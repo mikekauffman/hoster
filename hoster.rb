@@ -9,18 +9,18 @@ class Hoster < Sinatra::Application
     # This is here so /favicon.ico doesn't match the /:id route
   end
 
+  PARTYDB = PartyDatabase.new(DB)
+
   get '/' do
-    party_data = PartyDatabase.new(DB)
     parties = []
-    party_data.all.each do |row|
+    PARTYDB.all.each do |row|
       parties << Party.new(row)
     end
     erb :index, locals: {parties: parties}
   end
 
   post '/new_party' do
-    party_data = PartyDatabase.new(DB)
-    party_data.create(
+    PARTYDB.create(
       :name => params['party_name'],
       :size => params['party_size'].to_i,
       :phone => params['party_phone'].to_i,
@@ -29,10 +29,8 @@ class Hoster < Sinatra::Application
     redirect '/'
   end
 
-  post '/delete/:name' do
-    puts params[:name]
-    party_data = PartyDatabase.new(DB)
-    party_data.delete(params[:name])
+  post '/delete/:phone' do
+    PARTYDB.delete(params[:phone])
     redirect '/'
   end
 

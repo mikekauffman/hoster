@@ -16,4 +16,5 @@ class Party
   def wait_time
     ((Time.now - @arrival_time)/60).to_i if @arrival_time
   end
+
 end

@@ -19,8 +19,8 @@ class PartyDatabase
     @database_table.where(:name => name).to_a[0]
   end
 
-  def delete(name)
-    @database_table.where(:name => name).delete
+  def delete(phone)
+    @database_table.where(:phone => phone).delete
   end
 
 end
