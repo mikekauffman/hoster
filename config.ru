@@ -1,10 +1,6 @@
 require 'sequel'
 
-hoster_db = if ENV['HEROKU_POSTGRESQL_JADE_URL'].nil?
-              'postgres://gschool_user:password@localhost/hoster_dev_database'
-            else
-              ENV['HEROKU_POSTGRESQL_JADE_URL']
-            end
+hoster_db = ENV['DATABASE_URL'] || 'postgres://gschool_user:password@localhost/hoster_dev_database'
 
 DB = Sequel.connect(hoster_db)
 
